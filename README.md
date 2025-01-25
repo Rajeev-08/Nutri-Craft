@@ -18,12 +18,12 @@ Our food recommendation engine, employing a content-based approach, is designed 
 ### Run it locally
 #### Clone the repo
 ```
-$ git clone https://github.com/zakaria-narjis/Diet-Recommendation-System
+ git clone https://github.com/Rajeev-08/Mini-Project.git
 ```
 ### docker-compose
 In the project root run:
 ```
-$ docker-compose up -d --build
+ docker-compose up -d --build
 ```
 Then open http://localhost:8501 and enjoy.
 
