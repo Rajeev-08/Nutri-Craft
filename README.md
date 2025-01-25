@@ -24,7 +24,7 @@ In the project root run:
 ```
  docker-compose up -d --build
 ```
-Then open http://localhost:8501 and enjoy.
+Then open http://localhost:8501
 
 PS: You should have docker and docker-compose already installed
 
