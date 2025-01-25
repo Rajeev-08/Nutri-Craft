@@ -19,7 +19,7 @@ Our food recommendation engine uses a content-based approach to provide personal
 ```
  git clone https://github.com/Rajeev-08/Mini-Project.git
 ```
-### docker-compose (Work on Progress.....:octocat:)
+### docker-compose (Work on Progress..... 🛠️)
 In the project root run:
 ```
  docker-compose up -d --build
