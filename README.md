@@ -16,6 +16,7 @@ Our food recommendation engine uses a content-based approach to provide personal
   <img src="https://contrib.rocks/image?repo=Rajeev-08/Nutri-Craft" />
 </a>
 
+Made with [contrib.rocks](https://contrib.rocks).
 ## :whale: Setup
 
 ### Run it locally
