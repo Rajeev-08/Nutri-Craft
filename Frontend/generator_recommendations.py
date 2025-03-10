@@ -1,22 +1,22 @@
 import requests
 import json
 
-class RecipeGenerator:
-    def __init__(self, nutritional_data: list, ingredient_list: list = [], query_params: dict = {'n_neighbors': 5, 'return_distance': False}):
-        self.nutritional_data = nutritional_data
-        self.ingredient_list = ingredient_list
-        self.query_params = query_params
+class Generator:
+    def __init__(self,nutrition_input:list,ingredients:list=[],params:dict={'n_neighbors':5,'return_distance':False}):
+        self.nutrition_input=nutrition_input
+        self.ingredients=ingredients
+        self.params=params
 
-    def update_request(self, nutritional_data: list, ingredient_list: list, query_params: dict):
-        self.nutritional_data = nutritional_data
-        self.ingredient_list = ingredient_list
-        self.query_params = query_params
+    def set_request(self,nutrition_input:list,ingredients:list,params:dict):
+        self.nutrition_input=nutrition_input
+        self.ingredients=ingredients
+        self.params=params
 
-    def create_request(self):
-        request_data = {
-            'nutritional_data': self.nutritional_data,
-            'ingredient_list': self.ingredient_list,
-            'query_params': self.query_params
+    def generate(self,):
+        request={
+            'nutrition_input':self.nutrition_input,
+            'ingredients':self.ingredients,
+            'params':self.params
         }
-        response = requests.post(url='http://backend:8080/predict/', data=json.dumps(request_data))
+        response=requests.post(url='http://localhost:8080/predict/',data=json.dumps(request))
         return response
