@@ -18,11 +18,4 @@ def get_images_links(searchTerm):
 
         return imgs_urls[0] if imgs_urls else Not_found_link
     except Exception as e:
-        print(f"Error: {e}")
         return Not_found_link
-
-# Test
-search_term = "apple"
-image_link = get_images_links(search_term)
-print(f"Image URL for '{search_term}': {image_link}")
-#out: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaN1Cr1SuDUeoTSVHDIwMvhi26ZGOOTd9jWmvXUl34sSTG35CX_w5JsZWTCng&s
