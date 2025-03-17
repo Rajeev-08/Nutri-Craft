@@ -5,12 +5,6 @@ st.set_page_config(
    
 )
 
-st.markdown(
-    """
-    work in progress.......
-    """
-)
-
 """
 import streamlit as st
 import pandas as pd
