@@ -5,7 +5,6 @@ st.set_page_config(
    
 )
 
-"""
 import streamlit as st
 import pandas as pd
 from Generate_R import Generator
@@ -105,4 +104,4 @@ if st.session_state.generated:
         st.success('Recommendation Generated Successfully !', icon="✅")
     with st.container():
         display.display_meal_choices(st.session_state.person,st.session_state.recommendations)\"
-            """
+            
