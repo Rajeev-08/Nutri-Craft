@@ -1,3 +1,4 @@
+
 import streamlit as st
 from Generate_R import Generator
 from Find_img.img import get_images_links as find_image
@@ -42,11 +43,10 @@ class Display:
                         expander = st.expander(recipe_name)
                         recipe_link=recipe['image_link']
                         recipe_img=f'<div><center><img src={recipe_link} alt={recipe_name}></center></div>'     
-                        nutritions_df=pd.DataFrame({value:[recipe[value]] for value in nutrition_values})      
+                              
                         
                         expander.markdown(recipe_img,unsafe_allow_html=True)  
-                        expander.markdown(f'<h5 style="text-align: center;font-family:sans-serif;">Nutritional Values (g):</h5>', unsafe_allow_html=True)                   
-                        expander.dataframe(nutritions_df)
+
                         expander.markdown(f'<h5 style="text-align: center;font-family:sans-serif;">Ingredients:</h5>', unsafe_allow_html=True)
                         for ingredient in recipe['RecipeIngredientParts']:
                             expander.markdown(f"""
@@ -118,8 +118,11 @@ with st.form("recommendation_form"):
     nutritions_values_list=[Calories,FatContent,SaturatedFatContent,CholesterolContent,SodiumContent,CarbohydrateContent,FiberContent,SugarContent,ProteinContent]
     st.header('Recommendation options (OPTIONAL):')
     nb_recommendations = st.slider('Number of recommendations', 5, 20,step=5)
-    ingredient_txt=st.text_input('Specify ingredients to include in the recommendations separated by ";" :',placeholder='Ingredient1;Ingredient2;...')
-    st.caption('Example: Milk;eggs;butter;chicken...')
+    general_ingredients = st.selectbox("Select an ingredient (optional):", ["", "Chicken", "Butter", "Milk", "Chocolate"])
+    ingredient_txt=st.text_input('Additional ingredients to include in the recommendations separated by ";" :',placeholder='Ingredient1;Ingredient2;...')
+    st.caption('Example: eggs;butter;chocolate...')
+    if general_ingredients:
+        ingredient_txt = f"{ingredient_txt};{general_ingredients}" if ingredient_txt else general_ingredients
     generated = st.form_submit_button("Generate")
 if generated:
     with st.spinner('Generating recommendations...'): 
