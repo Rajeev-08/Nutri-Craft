@@ -1,4 +1,3 @@
-
 import streamlit as st
 from Generate_R import Generator
 from Find_img.img import get_images_links as find_image
@@ -35,34 +34,30 @@ class Display:
     def display_recommendation(self,recommendations):
         st.subheader('Recommended recipes:')
         if recommendations!=None:
-            rows=len(recommendations)//5
-            for column,row in zip(st.columns(5),range(5)):
-                with column:
-                    for recipe in recommendations[rows*row:rows*(row+1)]:                             
-                        recipe_name=recipe['Name']
-                        expander = st.expander(recipe_name)
-                        recipe_link=recipe['image_link']
-                        recipe_img=f'<div><center><img src={recipe_link} alt={recipe_name}></center></div>'     
-                              
-                        
-                        expander.markdown(recipe_img,unsafe_allow_html=True)  
-
-                        expander.markdown(f'<h5 style="text-align: center;font-family:sans-serif;">Ingredients:</h5>', unsafe_allow_html=True)
-                        for ingredient in recipe['RecipeIngredientParts']:
-                            expander.markdown(f"""
-                                        - {ingredient}
-                            """)
-                        expander.markdown(f'<h5 style="text-align: center;font-family:sans-serif;">Recipe Instructions:</h5>', unsafe_allow_html=True)    
-                        for instruction in recipe['RecipeInstructions']:
-                            expander.markdown(f"""
-                                        - {instruction}
-                            """) 
-                        expander.markdown(f'<h5 style="text-align: center;font-family:sans-serif;">Cooking and Preparation Time:</h5>', unsafe_allow_html=True)   
+            columns = st.columns(3)
+            for idx, recipe in enumerate(recommendations):
+                with columns[idx % 3]:
+                    recipe_name=recipe['Name']
+                    expander = st.expander(recipe_name)
+                    recipe_link=recipe['image_link']
+                    recipe_img=f'<div><center><img src={recipe_link} alt={recipe_name}></center></div>'     
+                    expander.markdown(recipe_img,unsafe_allow_html=True)  
+                    expander.markdown(f'<h5 style="text-align: center;font-family:sans-serif;">Ingredients:</h5>', unsafe_allow_html=True)
+                    for ingredient in recipe['RecipeIngredientParts']:
                         expander.markdown(f"""
-                                - Cook Time       : {recipe['CookTime']}min
-                                - Preparation Time: {recipe['PrepTime']}min
-                                - Total Time      : {recipe['TotalTime']}min
-                            """)                       
+                                    - {ingredient}
+                        """)
+                    expander.markdown(f'<h5 style="text-align: center;font-family:sans-serif;">Recipe Instructions:</h5>', unsafe_allow_html=True)    
+                    for instruction in recipe['RecipeInstructions']:
+                        expander.markdown(f"""
+                                    - {instruction}
+                        """) 
+                    expander.markdown(f'<h5 style="text-align: center;font-family:sans-serif;">Cooking and Preparation Time:</h5>', unsafe_allow_html=True)   
+                    expander.markdown(f"""
+                            - Cook Time       : {recipe['CookTime']}min
+                            - Preparation Time: {recipe['PrepTime']}min
+                            - Total Time      : {recipe['TotalTime']}min
+                        """)                       
         else:
             st.info('Couldn\'t find any recipes with the specified ingredients', icon="🙁")
     def display_overview(self,recommendations):
@@ -101,7 +96,6 @@ class Display:
 title="<h1 style='text-align: center;'>Custom Food Recommendation</h1>"
 st.markdown(title, unsafe_allow_html=True)
 
-
 display=Display()
 
 with st.form("recommendation_form"):
@@ -125,7 +119,7 @@ with st.form("recommendation_form"):
         ingredient_txt = f"{ingredient_txt};{general_ingredients}" if ingredient_txt else general_ingredients
     generated = st.form_submit_button("Generate")
 if generated:
-    with st.spinner('Generating recommendations...'): 
+    with st.spinner('Generating recommendations...'):
         recommendation=Recommendation(nutritions_values_list,nb_recommendations,ingredient_txt)
         recommendations=recommendation.generate()
         st.session_state.recommendations=recommendations
