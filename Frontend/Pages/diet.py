@@ -4,13 +4,8 @@ from Generate_R import Generator
 from random import uniform as rnd
 from Find_img.img import get_images_links as find_image
 from streamlit_echarts import st_echarts
-
 st.set_page_config(page_title="Automatic Diet Recommendation",layout="wide")
-
-
-
 nutritions_values=['Calories','FatContent','SaturatedFatContent','CholesterolContent','SodiumContent','CarbohydrateContent','FiberContent','SugarContent','ProteinContent']
-# Streamlit states initialization
 if 'person' not in st.session_state:
     st.session_state.generated = False
     st.session_state.recommendations=None
@@ -115,7 +110,7 @@ class Display:
             st.subheader('Recommended recipes:')
             for meal_name,column,recommendation in zip(meals,st.columns(len(meals)),recommendations):
                 with column:
-                    #st.markdown(f'<div style="text-align: center;">{meal_name.upper()}</div>', unsafe_allow_html=True) 
+
                     st.markdown(f'##### {meal_name.upper()}')    
                     for recipe in recommendation:
                         
@@ -144,7 +139,6 @@ class Display:
 
     def display_meal_choices(self,person,recommendations):    
         st.subheader('Choose your meal composition:')
-        # Display meal compositions choices
         if len(recommendations)==3:
             breakfast_column,launch_column,dinner_column=st.columns(3)
             with breakfast_column:
@@ -189,8 +183,6 @@ class Display:
   
         total_calories_chose=total_nutrition_values['Calories']
         loss_calories_chose=round(person.calories_calculator()*person.weight_loss)
-
-        # Display corresponding graphs
         st.markdown(f'<h5 style="text-align: center;font-family:sans-serif;">Total Calories in Recipes vs {st.session_state.weight_loss_option} Calories:</h5>', unsafe_allow_html=True)
         total_calories_graph_options = {
     "xAxis": {
