@@ -1,13 +1,11 @@
-# backend/Dockerfile
-
 FROM python:3.10.8
 
 RUN mkdir -p app/backend
 
-COPY Backend/requirements.txt app/backend/requirements.txt
+COPY FastAPI_Backend/requirements.txt app/backend/requirements.txt
 COPY Data app/Data
 
-COPY Backend app/backend
+COPY FastAPI_Backend app/backend
 
 WORKDIR /app/backend
 
