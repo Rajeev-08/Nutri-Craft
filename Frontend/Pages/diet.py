@@ -5,7 +5,7 @@ from random import uniform as rnd
 from Find_img.img import get_images_links as find_image
 from streamlit_echarts import st_echarts
 
-st.set_page_config(page_title="Automatic Diet Recommendation", page_icon="💪",layout="wide")
+st.set_page_config(page_title="Automatic Diet Recommendation",layout="wide")
 
 
 
@@ -123,11 +123,8 @@ class Display:
                         expander = st.expander(recipe_name)
                         recipe_link=recipe['image_link']
                         recipe_img=f'<div><center><img src={recipe_link} alt={recipe_name}></center></div>'     
-                        nutritions_df=pd.DataFrame({value:[recipe[value]] for value in nutritions_values})      
                         
-                        expander.markdown(recipe_img,unsafe_allow_html=True)  
-                        expander.markdown(f'<h5 style="text-align: center;font-family:sans-serif;">Nutritional Values (g):</h5>', unsafe_allow_html=True)                   
-                        expander.dataframe(nutritions_df)
+                        expander.markdown(recipe_img,unsafe_allow_html=True)                    
                         expander.markdown(f'<h5 style="text-align: center;font-family:sans-serif;">Ingredients:</h5>', unsafe_allow_html=True)
                         for ingredient in recipe['RecipeIngredientParts']:
                             expander.markdown(f"""
