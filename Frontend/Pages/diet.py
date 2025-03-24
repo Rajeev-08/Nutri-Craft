@@ -4,7 +4,7 @@ from Generate_R import Generator
 from random import uniform as rnd
 from Find_img.img import get_images_links as find_image
 from streamlit_echarts import st_echarts
-st.set_page_config(page_title="Automatic Diet Recommendation",layout="wide")
+st.set_page_config(page_title="Diet Recommendation",layout="wide")
 nutritions_values=['Calories','FatContent','SaturatedFatContent','CholesterolContent','SodiumContent','CarbohydrateContent','FiberContent','SugarContent','ProteinContent']
 if 'person' not in st.session_state:
     st.session_state.generated = False
