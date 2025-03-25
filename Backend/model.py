@@ -21,10 +21,7 @@ def build_pipeline(neigh,scaler,params):
     pipeline=Pipeline([('std_scaler',scaler),('NN',transformer)])
     return pipeline
 
-def extract_data(dataframe,ingredients):
-    extracted_data=dataframe.copy()
-    extracted_data=extract_ingredient_filtered_data(extracted_data,ingredients)
-    return extracted_data
+
     
 def extract_ingredient_filtered_data(dataframe,ingredients):
     extracted_data=dataframe.copy()
