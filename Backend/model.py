@@ -51,6 +51,16 @@ def extract_quoted_strings(s):
     strings = re.findall(r'"([^"]*)"', s)
     
     return strings
+    def output_recommended_recipes(dataframe):
+    if dataframe is not None:
+        output=dataframe.copy()
+        output=output.to_dict("records")
+        for recipe in output:
+            recipe['RecipeIngredientParts']=extract_quoted_strings(recipe['RecipeIngredientParts'])
+            recipe['RecipeInstructions']=extract_quoted_strings(recipe['RecipeInstructions'])
+    else:
+        output=None
+    return output
 
 
 
