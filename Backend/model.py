@@ -25,7 +25,11 @@ def extract_data(dataframe,ingredients):
     extracted_data=dataframe.copy()
     extracted_data=extract_ingredient_filtered_data(extracted_data,ingredients)
     return extracted_data
-    
+def extract_ingredient_filtered_data(dataframe,ingredients):
+    extracted_data=dataframe.copy()
+    regex_string=''.join(map(lambda x:f'(?=.*{x})',ingredients))
+    extracted_data=extracted_data[extracted_data['RecipeIngredientParts'].str.contains(regex_string,regex=True,flags=re.IGNORECASE)]
+    return extracted_data
 
 
 def apply_pipeline(pipeline,_input,extracted_data):
