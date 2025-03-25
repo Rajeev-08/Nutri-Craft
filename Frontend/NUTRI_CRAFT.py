@@ -4,7 +4,7 @@ st.set_page_config(
     page_title="NUTRI CRAFT",
 )
 
-st.write("# objective")
+st.write("# OBJECTIVE")
 
 st.sidebar.success("Select a recommendation app.")
 
