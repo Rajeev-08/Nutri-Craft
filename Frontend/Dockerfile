@@ -1,3 +1,5 @@
+# Frontend/Dockerfile
+
 FROM python:3.10.8
 
 RUN mkdir -p app/frontend
@@ -13,4 +15,4 @@ EXPOSE 8501
 
 ENTRYPOINT ["streamlit","run"]
 
-CMD ["NUTRI_CRAFT.py"]
+CMD ["Hello.py"]
