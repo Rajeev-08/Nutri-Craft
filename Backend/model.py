@@ -25,16 +25,17 @@ def extract_data(dataframe,ingredients):
     extracted_data=dataframe.copy()
     extracted_data=extract_ingredient_filtered_data(extracted_data,ingredients)
     return extracted_data
+    
 def extract_ingredient_filtered_data(dataframe,ingredients):
     extracted_data=dataframe.copy()
     regex_string=''.join(map(lambda x:f'(?=.*{x})',ingredients))
     extracted_data=extracted_data[extracted_data['RecipeIngredientParts'].str.contains(regex_string,regex=True,flags=re.IGNORECASE)]
     return extracted_data
 
-
 def apply_pipeline(pipeline,_input,extracted_data):
     _input=np.array(_input).reshape(1,-1)
     return extracted_data.iloc[pipeline.transform(_input)[0]]
+
 def recommend(dataframe,_input,ingredients=[],params={'n_neighbors':5,'return_distance':False}):
         extracted_data=extract_data(dataframe,ingredients)
         if extracted_data.shape[0]>=params['n_neighbors']:
@@ -45,13 +46,13 @@ def recommend(dataframe,_input,ingredients=[],params={'n_neighbors':5,'return_di
         else:
             return None
 
-
 def extract_quoted_strings(s):
    
     strings = re.findall(r'"([^"]*)"', s)
-    
+ 
     return strings
-    def output_recommended_recipes(dataframe):
+
+def output_recommended_recipes(dataframe):
     if dataframe is not None:
         output=dataframe.copy()
         output=output.to_dict("records")
@@ -61,6 +62,3 @@ def extract_quoted_strings(s):
     else:
         output=None
     return output
-
-
-
