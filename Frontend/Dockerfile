@@ -15,4 +15,4 @@ EXPOSE 8501
 
 ENTRYPOINT ["streamlit","run"]
 
-CMD ["Hello.py"]
+CMD ["NUTRI_CRAFT.py"]
