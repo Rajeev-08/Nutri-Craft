@@ -47,9 +47,9 @@ def recommend(dataframe,_input,ingredients=[],params={'n_neighbors':5,'return_di
             return None
 
 def extract_quoted_strings(s):
-   
+
     strings = re.findall(r'"([^"]*)"', s)
- 
+
     return strings
 
 def output_recommended_recipes(dataframe):
