@@ -2,7 +2,7 @@ FROM python:3.10.8
 
 RUN mkdir -p app/frontend
 
-COPY Streamlit_Frontend app/frontend
+COPY Frontend app/frontend
 
 WORKDIR /app/frontend
 
@@ -13,4 +13,4 @@ EXPOSE 8501
 
 ENTRYPOINT ["streamlit","run"]
 
-CMD ["Hello.py"]
+CMD ["NUTRI_CRAFT.py"]
