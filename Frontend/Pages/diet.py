@@ -8,14 +8,15 @@ from streamlit_echarts import st_echarts
 st.set_page_config(page_title="Diet Recommendation", layout="wide")
 
 nutritions_values=['Calories','FatContent','SaturatedFatContent','CholesterolContent','SodiumContent','CarbohydrateContent','FiberContent','SugarContent','ProteinContent']
-# Streamlit states initialization
+
 if 'person' not in st.session_state:
     st.session_state.gen = False
     st.session_state.recommendations=None
     st.session_state.person=None
     st.session_state.weight_loss_option=None
+    
 class Person:
-
+    
     def __init__(self,age,height,weight,gender,activity,meals_calories_perc,weight_loss):
         self.age=age
         self.height=height
@@ -24,6 +25,7 @@ class Person:
         self.activity=activity
         self.meals_calories_perc=meals_calories_perc
         self.weight_loss=weight_loss
+        
     def calculate_bmi(self,):
         bmi=round(self.weight/((self.height/100)**2),2)
         return bmi
@@ -81,6 +83,7 @@ class Person:
         return recommendations
 
 class Display:
+    
     def __init__(self):
         self.plans=["Maintain weight","Mild weight loss","Weight loss","Extreme weight loss"]
         self.weights=[1,0.9,0.8,0.6]
@@ -113,7 +116,7 @@ class Display:
             st.subheader('Recommended recipes:')
             for meal_name,column,recommendation in zip(meals,st.columns(len(meals)),recommendations):
                 with column:
-                    #st.markdown(f'<div style="text-align: center;">{meal_name.upper()}</div>', unsafe_allow_html=True) 
+                   
                     st.markdown(f'##### {meal_name.upper()}')    
                     for recipe in recommendation:
                         
@@ -145,7 +148,7 @@ class Display:
 
     def display_meal_choices(self,person,recommendations):    
         st.subheader('Choose your meal composition:')
-        # Display meal compositions choices
+       
         if len(recommendations)==3:
             breakfast_column,launch_column,dinner_column=st.columns(3)
             with breakfast_column:
@@ -269,7 +272,7 @@ if gen:
         recommendations=person.generate_recommendations()
         st.session_state.recommendations=recommendations
         st.session_state.person=person
-
+        
 if st.session_state.gen:
     with st.container():
         display.display_recommendation(st.session_state.person,st.session_state.recommendations)
