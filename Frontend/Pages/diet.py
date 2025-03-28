@@ -183,7 +183,7 @@ class Display:
                 dinner_choice=st.selectbox(f'Choose your  dinner:',[recipe['Name'] for recipe in recommendations[4]])
             choices=[breakfast_choice,morning_snack,launch_choice,afternoon_snack,dinner_choice] 
         
-        # Calculating the sum of nutritional values of the choosen recipes
+       
         total_nutrition_values={nutrition_value:0 for nutrition_value in nutritions_values}
         for choice,meals_ in zip(choices,recommendations):
             for meal in meals_:
@@ -194,7 +194,7 @@ class Display:
         total_calories_chose=total_nutrition_values['Calories']
         loss_calories_chose=round(person.calories_calculator()*person.weight_loss)
 
-        # Display corresponding graphs
+
         st.markdown(f'<h5 style="text-align: center;font-family:sans-serif;">Total Calories in Recipes vs {st.session_state.weight_loss_option} Calories:</h5>', unsafe_allow_html=True)
         total_calories_graph_options = {
     "xAxis": {
