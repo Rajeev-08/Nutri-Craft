@@ -5,10 +5,7 @@ from random import uniform as rnd
 from Findimg.Img import get_images_links as find_image
 from streamlit_echarts import st_echarts
 
-
 st.set_page_config(page_title="Diet Recommendation", layout="wide")
-
-
 
 nutritions_values=['Calories','FatContent','SaturatedFatContent','CholesterolContent','SodiumContent','CarbohydrateContent','FiberContent','SugarContent','ProteinContent']
 # Streamlit states initialization
@@ -239,8 +236,6 @@ class Display:
 }       
         st_echarts(options=nutritions_graph_options, height="500px",)
         
-        
-
 display=Display()
 title="<h1 style='text-align: center;'>Automatic Diet Recommendation</h1>"
 st.markdown(title, unsafe_allow_html=True)
@@ -274,7 +269,6 @@ if gen:
         recommendations=person.generate_recommendations()
         st.session_state.recommendations=recommendations
         st.session_state.person=person
-
 
 if st.session_state.gen:
     with st.container():
