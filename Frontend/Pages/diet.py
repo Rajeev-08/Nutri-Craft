@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from Generate_R import Generator
 from random import uniform as rnd
-from Findimg.Img import get_images_links as find_image
+from Find_img.img import get_images_links as find_image
 from streamlit_echarts import st_echarts
 
 st.set_page_config(page_title="Diet Recommendation", layout="wide")
